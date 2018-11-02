@@ -1,0 +1,12 @@
+[package]
+name = "rubygems_api"
+version = "0.1.0"
+authors = ["Rasmus Thomsen <rasmus.thomsen@protonmail.com>"]
+
+[dependencies]
+reqwest = { version = "0.9" }
+serde = "1.0.79"
+serde_derive = "1.0.79"
+serde_json = "1.0.32"
+url = "1.7.1"
+failure = "^0.1.3"
