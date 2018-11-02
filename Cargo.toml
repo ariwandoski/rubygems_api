@@ -2,6 +2,11 @@
 name = "rubygems_api"
 version = "0.1.0"
 authors = ["Rasmus Thomsen <rasmus.thomsen@protonmail.com>"]
+description = "Query the rubygems.org API"
+homepage = "https://github.com/Cogitri/rubygems_api"
+repository = "https://github.com/Cogitri/rubygems_api"
+readme = "README.md"
+license = "GPL-3.0-or-later"
 
 [dependencies]
 reqwest = { version = "0.9" }
