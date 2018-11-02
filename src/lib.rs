@@ -20,6 +20,8 @@ extern crate serde_json;
 extern crate serde;
 #[macro_use]
 extern crate failure;
+#[macro_use]
+extern crate log;
 
 use reqwest::{StatusCode, Url};
 use serde::de::DeserializeOwned;
@@ -84,6 +86,8 @@ impl SyncClient {
     }
 
     fn get<T: DeserializeOwned>(&self, url: Url) -> Result<T, Error> {
+        info!("GET {}", url);
+
         let mut res = {
             let res = self.client.get(url).send()?;
 
