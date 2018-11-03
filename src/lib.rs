@@ -53,10 +53,22 @@ pub struct SyncClient {
     base_url: Url,
 }
 
+#[derive(Deserialize, Debug)]
+pub struct GemDevDeps {
+    pub name: String,
+    pub requirements: String,
+}
+
+#[derive(Deserialize, Debug)]
+pub struct GemRunDeps {
+    pub name: String,
+    pub requirements: String,
+}
+
 #[derive(Deserialize)]
 pub struct GemDeps {
-    pub development: Option<Vec<String>>,
-    pub runtime: Option<Vec<String>>,
+    pub development: Option<Vec<GemDevDeps>>,
+    pub runtime: Option<Vec<GemRunDeps>>,
 }
 
 #[derive(Deserialize)]
@@ -65,7 +77,7 @@ pub struct GemInfo {
     pub authors: String,
     pub version: String,
     pub info: Option<String>,
-    pub licenses: Option<String>,
+    pub licenses: Option<Vec<String>>,
     pub project_uri: String,
     pub gem_uri: String,
     pub homepage_uri: Option<String>,
@@ -133,9 +145,17 @@ mod test {
     use SyncClient;
 
     #[test]
-    fn test_client() {
+    fn test_name() {
         let client = SyncClient::new();
         let gem_info = client.gem_info("ruby-json").unwrap();
         assert!(gem_info.name.len() > 0);
+    }
+
+    #[test]
+    fn test_deps() {
+        let client = SyncClient::new();
+        let gem_info = client.gem_info("ffi").unwrap();
+        let gem_info_deps = gem_info.dependencies.development.unwrap();
+        assert!(gem_info_deps.len() > 0);
     }
 }
