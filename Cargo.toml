@@ -1,6 +1,6 @@
 [package]
 name = "rubygems_api"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Rasmus Thomsen <rasmus.thomsen@protonmail.com>"]
 description = "Query the rubygems.org API"
 homepage = "https://github.com/Cogitri/rubygems_api"
