@@ -113,6 +113,9 @@ impl SyncClient {
         Ok(data)
     }
 
+    /// Download all relevant data of a Gem from RubyGems.org
+    ///
+    /// Will fail if either the Gem couldn't be found or querying the API failed
     pub fn gem_info(&self, name: &str) -> Result<GemInfo, Error> {
         let url = self.base_url.join(&format!("{}.json", &name))?;
         let data: GemInfo = self.get(url)?;
