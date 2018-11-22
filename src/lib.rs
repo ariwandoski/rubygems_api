@@ -65,13 +65,13 @@ pub struct GemRunDeps {
     pub requirements: String,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct GemDeps {
     pub development: Option<Vec<GemDevDeps>>,
     pub runtime: Option<Vec<GemRunDeps>>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub struct GemInfo {
     pub name: String,
     pub authors: String,
@@ -117,6 +117,8 @@ impl SyncClient {
         let url = self.base_url.join(&format!("{}.json", &name))?;
         let data: GemInfo = self.get(url)?;
 
+        debug!("Received data from API: {:?}", data);
+
         let deserialized_gemdeps = GemDeps {
             development: data.dependencies.development,
             runtime: data.dependencies.runtime,
@@ -135,6 +137,8 @@ impl SyncClient {
             documentation_uri: data.documentation_uri,
             dependencies: deserialized_gemdeps,
         };
+
+        debug!("GemInfo: {:?}", deserialized_geminfo);
 
         Ok(deserialized_geminfo)
     }
