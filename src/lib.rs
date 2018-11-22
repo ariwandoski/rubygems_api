@@ -158,4 +158,11 @@ mod test {
         let gem_info_deps = gem_info.dependencies.development.unwrap();
         assert!(gem_info_deps.len() > 0);
     }
+
+    #[test]
+    fn test_license() {
+        let client = SyncClient::new();
+        let gem_info = client.gem_info("newrelic_rpm").unwrap();
+        println!("{:?}", gem_info.licenses)
+    }
 }
