@@ -84,6 +84,7 @@ pub struct GemInfo {
     pub wiki_uri: Option<String>,
     pub documentation_uri: Option<String>,
     pub dependencies: GemDeps,
+    pub sha: String,
 }
 
 impl SyncClient {
@@ -139,6 +140,7 @@ impl SyncClient {
             wiki_uri: data.wiki_uri,
             documentation_uri: data.documentation_uri,
             dependencies: deserialized_gemdeps,
+            sha: data.sha,
         };
 
         debug!("GemInfo: {:?}", deserialized_geminfo);
