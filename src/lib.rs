@@ -13,18 +13,11 @@
 //You should have received a copy of the GNU General Public License
 //along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
 
-extern crate reqwest;
-#[macro_use]
-extern crate serde_derive;
-extern crate serde;
-extern crate serde_json;
-#[macro_use]
-extern crate failure;
-#[macro_use]
-extern crate log;
-
+use log::{debug, info};
 use reqwest::{StatusCode, Url};
 use serde::de::DeserializeOwned;
+use serde_derive::Deserialize;
+use failure::Fail;
 
 #[derive(Fail, Debug)]
 pub enum Error {
@@ -151,7 +144,7 @@ impl SyncClient {
 
 #[cfg(test)]
 mod test {
-    use SyncClient;
+    use crate::SyncClient;
 
     #[test]
     fn test_name() {
